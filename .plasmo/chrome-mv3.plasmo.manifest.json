@@ -14,16 +14,12 @@
       "48": "./gen-assets/icon48.plasmo.png",
       "64": "./gen-assets/icon64.plasmo.png",
       "128": "./gen-assets/icon128.plasmo.png"
-    },
-    "default_popup": "./popup.html"
+    }
   },
   "version": "1.0.0",
   "author": "Ave Wallet Team",
-  "name": "Ave Wallet",
+  "name": "DEV | Ave Wallet",
   "description": "A MetaMask-like browser extension built with Plasmo, Tailwind CSS, and shadcn/ui",
-  "background": {
-    "service_worker": "./static/background/index.ts"
-  },
   "permissions": [
     "storage",
     "activeTab",
