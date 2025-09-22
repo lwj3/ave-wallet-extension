@@ -65,7 +65,7 @@ ave-wallet-extension/
 ├── background.ts               # 后台脚本
 ├── contents/
 │   └── inject.ts              # 内容脚本
-├── src/
+├── app/
 │   ├── styles/
 │   │   └── globals.css        # 全局样式
 │   ├── lib/
