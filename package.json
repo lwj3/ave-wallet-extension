@@ -2,7 +2,7 @@
   "name": "ave-wallet-extension",
   "displayName": "Ave Wallet",
   "version": "1.0.0",
-  "description": "A MetaMask-like browser extension built with Plasmo, Tailwind CSS, and shadcn/ui",
+  "description": "A browser extension built with Plasmo, Tailwind CSS, and shadcn/ui",
   "author": "Ave Wallet Team",
   "license": "MIT",
   "main": "dist/index.js",
