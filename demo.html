@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ave Wallet Extension Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">Ave Wallet Extension</h1>
+            <p class="text-xl opacity-90">类似 MetaMask 的现代浏览器钱包插件</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Wallet Status -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8 card-hover">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">钱包状态</h2>
+            <div id="wallet-status" class="text-gray-600">
+                <p>正在检测 Ave Wallet...</p>
+            </div>
+            <div class="mt-4 space-x-4">
+                <button id="connect-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors" disabled>
+                    连接钱包
+                </button>
+                <button id="disconnect-btn" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg transition-colors" disabled>
+                    断开连接
+                </button>
+            </div>
+        </div>
+
+        <!-- Account Info -->
+        <div id="account-info" class="bg-white rounded-lg shadow-lg p-6 mb-8 card-hover hidden">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">账户信息</h2>
+            <div id="account-details" class="text-gray-600">
+                <!-- Account details will be populated here -->
+            </div>
+        </div>
+
+        <!-- Transaction Demo -->
+        <div id="transaction-demo" class="bg-white rounded-lg shadow-lg p-6 mb-8 card-hover hidden">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">交易演示</h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">接收地址</label>
+                    <input type="text" id="to-address" placeholder="0x..." 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">金额 (ETH)</label>
+                    <input type="number" id="amount" placeholder="0.1" step="0.001"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button id="send-tx-btn" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors">
+                    发送交易
+                </button>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                <div class="text-blue-500 text-3xl mb-4">🔐</div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800">安全钱包</h3>
+                <p class="text-gray-600">密码保护、私钥加密存储、多重安全验证</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                <div class="text-green-500 text-3xl mb-4">💰</div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800">交易管理</h3>
+                <p class="text-gray-600">发送接收、历史记录、Gas 费用估算</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                <div class="text-purple-500 text-3xl mb-4">🌐</div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800">多网络支持</h3>
+                <p class="text-gray-600">以太坊、Polygon、自定义网络</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                <div class="text-orange-500 text-3xl mb-4">🎨</div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800">现代 UI</h3>
+                <p class="text-gray-600">shadcn/ui 组件、TailwindCSS 样式</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                <div class="text-red-500 text-3xl mb-4">🔌</div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800">dApp 集成</h3>
+                <p class="text-gray-600">EIP-1193 标准、MetaMask 兼容</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                <div class="text-indigo-500 text-3xl mb-4">⚡</div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800">高性能</h3>
+                <p class="text-gray-600">Plasmo 框架、TypeScript 类型安全</p>
+            </div>
+        </div>
+
+        <!-- Code Examples -->
+        <div class="bg-gray-900 rounded-lg shadow-lg p-6 text-white">
+            <h2 class="text-2xl font-bold mb-4">代码示例</h2>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2 text-green-400">检测钱包</h3>
+                    <pre class="bg-gray-800 p-3 rounded text-sm overflow-x-auto"><code>if (window.aveWallet) {
+  console.log('Ave Wallet detected!');
+}</code></pre>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-2 text-green-400">连接钱包</h3>
+                    <pre class="bg-gray-800 p-3 rounded text-sm overflow-x-auto"><code>const accounts = await window.aveWallet.connect();
+console.log('Connected:', accounts);</code></pre>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-2 text-green-400">发送交易</h3>
+                    <pre class="bg-gray-800 p-3 rounded text-sm overflow-x-auto"><code>const txHash = await window.aveWallet.sendTransaction({
+  to: '0x...',
+  value: '0x1000000000000000000', // 1 ETH
+  gasPrice: '0x3b9aca00'
+});</code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Ave Wallet Extension. 使用 Plasmo + TailwindCSS + shadcn/ui + js-wallet-sdk 构建</p>
+        </div>
+    </footer>
+
+    <script>
+        // Demo functionality
+        let isConnected = false;
+        let currentAccount = null;
+
+        // Check for Ave Wallet
+        function checkWallet() {
+            const statusEl = document.getElementById('wallet-status');
+            const connectBtn = document.getElementById('connect-btn');
+            
+            if (window.aveWallet) {
+                statusEl.innerHTML = '<p class="text-green-600">✅ Ave Wallet 已检测到</p>';
+                connectBtn.disabled = false;
+            } else {
+                statusEl.innerHTML = '<p class="text-red-600">❌ Ave Wallet 未检测到，请安装扩展</p>';
+                connectBtn.disabled = true;
+            }
+        }
+
+        // Connect wallet
+        async function connectWallet() {
+            try {
+                const accounts = await window.aveWallet.connect();
+                isConnected = true;
+                currentAccount = accounts.accounts[0];
+                
+                document.getElementById('wallet-status').innerHTML = 
+                    '<p class="text-green-600">✅ 钱包已连接</p>';
+                
+                document.getElementById('connect-btn').disabled = true;
+                document.getElementById('disconnect-btn').disabled = false;
+                
+                showAccountInfo();
+                showTransactionDemo();
+            } catch (error) {
+                alert('连接失败: ' + error.message);
+            }
+        }
+
+        // Disconnect wallet
+        async function disconnectWallet() {
+            try {
+                await window.aveWallet.disconnect();
+                isConnected = false;
+                currentAccount = null;
+                
+                document.getElementById('wallet-status').innerHTML = 
+                    '<p class="text-gray-600">钱包已断开连接</p>';
+                
+                document.getElementById('connect-btn').disabled = false;
+                document.getElementById('disconnect-btn').disabled = true;
+                
+                hideAccountInfo();
+                hideTransactionDemo();
+            } catch (error) {
+                alert('断开连接失败: ' + error.message);
+            }
+        }
+
+        // Show account info
+        function showAccountInfo() {
+            const accountInfo = document.getElementById('account-info');
+            const accountDetails = document.getElementById('account-details');
+            
+            accountDetails.innerHTML = `
+                <p><strong>地址:</strong> ${currentAccount}</p>
+                <p><strong>网络:</strong> 以太坊主网</p>
+            `;
+            
+            accountInfo.classList.remove('hidden');
+        }
+
+        // Hide account info
+        function hideAccountInfo() {
+            document.getElementById('account-info').classList.add('hidden');
+        }
+
+        // Show transaction demo
+        function showTransactionDemo() {
+            document.getElementById('transaction-demo').classList.remove('hidden');
+        }
+
+        // Hide transaction demo
+        function hideTransactionDemo() {
+            document.getElementById('transaction-demo').classList.add('hidden');
+        }
+
+        // Send transaction
+        async function sendTransaction() {
+            const toAddress = document.getElementById('to-address').value;
+            const amount = document.getElementById('amount').value;
+            
+            if (!toAddress || !amount) {
+                alert('请填写接收地址和金额');
+                return;
+            }
+            
+            try {
+                const txHash = await window.aveWallet.sendTransaction({
+                    to: toAddress,
+                    value: (parseFloat(amount) * 1e18).toString(16), // Convert to wei
+                    gasPrice: '0x3b9aca00' // 1 gwei
+                });
+                
+                alert('交易已发送! Hash: ' + txHash);
+            } catch (error) {
+                alert('交易失败: ' + error.message);
+            }
+        }
+
+        // Event listeners
+        document.getElementById('connect-btn').addEventListener('click', connectWallet);
+        document.getElementById('disconnect-btn').addEventListener('click', disconnectWallet);
+        document.getElementById('send-tx-btn').addEventListener('click', sendTransaction);
+
+        // Check wallet on load
+        window.addEventListener('load', checkWallet);
+        
+        // Listen for wallet ready event
+        window.addEventListener('aveWalletReady', checkWallet);
+    </script>
+</body>
+</html>
