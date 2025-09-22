@@ -4922,6 +4922,7 @@ __metadata:
     eslint-plugin-react: "npm:^7.33.0"
     eslint-plugin-react-hooks: "npm:^4.6.0"
     lucide-react: "npm:^0.263.1"
+    math-intrinsics: "npm:^1.1.0"
     plasmo: "npm:^0.90.5"
     postcss: "npm:^8.4.24"
     react: "npm:^18.2.0"

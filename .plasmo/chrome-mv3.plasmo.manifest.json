@@ -20,13 +20,9 @@
   "version": "1.0.0",
   "author": "Ave Wallet Team",
   "name": "Ave Wallet",
-  "description": "A browser extension built with Plasmo, Tailwind CSS, and shadcn/ui",
+  "description": "A MetaMask-like browser extension built with Plasmo, Tailwind CSS, and shadcn/ui",
   "background": {
     "service_worker": "./static/background/index.ts"
-  },
-  "options_ui": {
-    "page": "./options.html",
-    "open_in_tab": true
   },
   "permissions": [
     "storage",
@@ -34,16 +30,6 @@
     "tabs",
     "scripting",
     "alarms"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "../contents/inject.ts"
-      ]
-    }
   ],
   "host_permissions": [
     "<all_urls>"

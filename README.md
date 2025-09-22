@@ -1,6 +1,6 @@
 # Ave Wallet Extension
 
-一个现代浏览器插件，使用 Plasmo、Tailwind CSS、shadcn/ui 和 OKX-Web3-JS-Wallet-SDK 构建。
+一个类似 MetaMask 的现代浏览器插件，使用 Plasmo、Tailwind CSS、shadcn/ui 和 OKX-Web3-JS-Wallet-SDK 构建。
 
 ## 功能特性
 
@@ -65,7 +65,7 @@ ave-wallet-extension/
 ├── background.ts               # 后台脚本
 ├── contents/
 │   └── inject.ts              # 内容脚本
-├── app/
+├── src/
 │   ├── styles/
 │   │   └── globals.css        # 全局样式
 │   ├── lib/
@@ -102,7 +102,7 @@ ave-wallet-extension/
 
 1. 克隆仓库：
 ```bash
-git clone https://github.com/lwj3/ave-wallet-extension
+git clone <repository-url>
 cd ave-wallet-extension
 ```
 
